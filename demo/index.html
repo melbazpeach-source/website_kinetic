@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISRUPTOR | BUILD AT THE SPEED OF SOUND</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: { fontFamily: {"mono":["'Space Mono'","monospace"]} } }
+}
+</script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&amp;family=Space+Mono:wght@400;700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,400&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --volt: #CCFF00;
+            --dark: #121212;
+            --black: #000000;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+        }
+
+        .font-ranchers {
+            font-family: 'Ranchers', cursive;
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.1em;
+        }
+
+        .neo-shadow-black {
+            box-shadow: 8px 8px 0px 0px var(--black);
+        }
+
+        .neo-shadow-white {
+            box-shadow: 8px 8px 0px 0px var(--white);
+        }
+
+        .writing-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        .brutalist-btn-hover:hover {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+        }
+
+        .transition-brutalist {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--volt);
+            border: 3px solid var(--black);
+        }
+    </style>
+
+<meta name="preview-version" content="52dbcdbd-e1c8-43cf-938f-c1b58cd45c1c" />
+<meta name="preview-timestamp" content="2026-03-09T13:36:08.931Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // SuperDesign Runtime
+    console.log('[SuperDesign] Preview loaded for versionId:', "52dbcdbd-e1c8-43cf-938f-c1b58cd45c1c");
+
+    window.__SUPERDESIGN_PREVIEW__ = {
+      versionId: "52dbcdbd-e1c8-43cf-938f-c1b58cd45c1c",
+      timestamp: "2026-03-09T13:36:08.931Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'superdesign-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[SuperDesign] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[SuperDesign] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[SuperDesign] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__SUPERDESIGN_PREVIEW__.loadedFonts = new Set();
+    window.__SUPERDESIGN_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[SuperDesign] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__SUPERDESIGN_PREVIEW__.loadedCustomFonts = new Set();
+    window.__SUPERDESIGN_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__SUPERDESIGN_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__SUPERDESIGN_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__SUPERDESIGN_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__SUPERDESIGN_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__SUPERDESIGN_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__SUPERDESIGN_PREVIEW__) {
+          window.__SUPERDESIGN_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'superdesign-theme-update') {
+        if (window.__SUPERDESIGN_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__SUPERDESIGN_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__SUPERDESIGN_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__SUPERDESIGN_PREVIEW__.ready(); });
+    } else {
+      window.__SUPERDESIGN_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__SUPERDESIGN_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__SUPERDESIGN_PREVIEW__) {
+      var err = event.error;
+      window.__SUPERDESIGN_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__SUPERDESIGN_PREVIEW__) {
+      window.__SUPERDESIGN_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=2e2f6de6';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.superdesign.dev";
+    var DRAFT_ID = "52dbcdbd-e1c8-43cf-938f-c1b58cd45c1c";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+    <div class="min-h-screen">
+        
+        <!-- STICKY HEADER -->
+        <header class="sticky top-0 z-50 w-full bg-[#FFFFFF] border-b-4 border-black h-[90px] flex items-center justify-between px-8 md:pr-[248px]">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-black rotate-3 flex items-center justify-center">
+                    <iconify-icon icon="lucide:zap" class="text-[#FFFFFF] text-2xl"></iconify-icon>
+                </div>
+                <span class="text-black text-[30px] font-[800] uppercase tracking-tighter">peachyweb</span>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex font-mono text-sm bg-black text-white px-4 py-2 border-2 border-black neo-shadow-black">
+                    STATUS: HIGH VELOCITY
+                </div>
+                <a id="cta-join-beta" href="#" class="bg-[#CCFF00] text-black border-4 border-black px-6 py-2 rounded-lg font-mono font-bold hover:translate-x-1 hover:translate-y-1 transition-transform">
+                    JOIN BETA
+                </a>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT AREA (Padded for Right Sidebar) -->
+        <main class="md:pr-[200px]">
+            
+            <!-- HERO SECTION -->
+            <section class="relative pt-24 pb-32 px-6 bg-transparent overflow-hidden border-b-8 border-black">
+                <div class="max-w-6xl mx-auto text-center relative">
+                    <!-- Sticker Badge -->
+                    <div class="inline-block bg-white border-4 border-black py-2 px-6 -rotate-2 mb-8 neo-shadow-black">
+                        <p class="font-mono text-black font-bold text-lg uppercase">Design that pops!</p>
+                    </div>
+                    
+                    <h1 class="font-ranchers text-[100px] md:text-[180px] text-white uppercase drop-shadow-[6px_6px_0px_#000000] mb-8">peachy web</h1>
+
+                    <p class="text-2xl md:text-4xl italic text-[#CCFF00] font-medium mb-16 max-w-4xl mx-auto leading-tight">Juicy designs that convert that wont break the bank.</p>
+
+                    <!-- Brutalist Form -->
+                    <div class="max-w-2xl mx-auto">
+                        <form class="flex border-4 border-black bg-white neo-shadow-black overflow-hidden group">
+                            <input type="email" placeholder="ENTER YOUR WORK EMAIL" class="flex-grow bg-white px-6 py-6 font-mono text-black focus:outline-none placeholder:text-gray-400 uppercase">
+                            <button type="submit" class="bg-black text-white px-10 font-ranchers text-3xl uppercase transition-colors hover:bg-[#CCFF00] hover:text-black border-l-4 border-black">
+                                GET ACCESS
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOCIAL PROOF STICKER BAR -->
+            <section class="bg-white border-b-4 border-black py-12 px-6 overflow-hidden">
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="bg-white border-4 border-black p-4 rotate-1 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">BRANDING</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 -rotate-1 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-[#CCFF00] border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">MARKETING</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 rotate-2 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-gray-200 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">WEBSITE DESIGN</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 -rotate-2 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-orange-500 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">SEO OPTIMIZATION</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 rotate-1 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-blue-500 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">SOCIAL MEDIA</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 -rotate-1 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-pink-500 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">COPYWRITING</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 rotate-2 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-yellow-400 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">UX/UI AUDIT</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 -rotate-2 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-purple-500 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">E-COMMERCE</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 rotate-1 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-teal-500 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">MOBILE APPS</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 -rotate-1 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-red-600 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">CONTENT STRATEGY</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 rotate-2 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-slate-800 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">MOTION GRAPHICS</p>
+                    </div>
+                    <div class="bg-white border-4 border-black p-4 -rotate-2 neo-shadow-black flex items-center gap-4 min-w-[300px]">
+                        <div class="w-12 h-12 bg-cyan-400 border-2 border-black"></div>
+                        <p class="font-mono text-black text-sm uppercase">DATA ANALYTICS</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HIGH-IMPACT COMPARISON SECTION -->
+            <section class="bg-black">
+                <!-- Header -->
+                <div class="border-b-4 border-white py-12 px-8">
+                    <p class="font-mono text-[#CCFF00] uppercase mb-4">ANALYTICS COMPARISON</p>
+                    <h2 class="font-ranchers text-6xl md:text-8xl text-white uppercase">VINTAGE VS. VELOCITY</h2>
+                </div>
+
+                <!-- Rows -->
+                <div class="grid grid-cols-1">
+                    <!-- Row 1 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 min-h-[400px] border-b-4 border-white">
+                        <div class="bg-[#000000] p-12 flex flex-col justify-center border-b-4 md:border-b-0 md:border-r-4 border-white">
+                            <p class="font-mono text-slate-500 uppercase text-xs mb-4">LEGACY INFRASTRUCTURE</p>
+                            <h3 class="font-ranchers text-6xl md:text-[80px] text-slate-600 uppercase mb-6">SLOW DATA</h3>
+                            <p class="font-mono text-slate-600 text-lg uppercase">LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. SED DO EIUSMOD TEMPOR INCIDIDUNT.</p>
+                        </div>
+                        <div class="bg-[#CCFF00] p-12 flex flex-col justify-center text-black">
+                            <p class="font-mono text-black uppercase text-xs mb-4">DISRUPTOR CORE</p>
+                            <h3 class="font-ranchers text-6xl md:text-[80px] text-black uppercase mb-6">INSTANT STREAM</h3>
+                            <p class="font-mono text-black text-lg uppercase">ZERO LATENCY DATA STREAMING. REAL-TIME PIPELINES BUILT FOR SCALE WITHOUT COMPROMISE.</p>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 min-h-[400px] border-b-8 border-black">
+                        <div class="bg-[#000000] p-12 flex flex-col justify-center border-b-4 md:border-b-0 md:border-r-4 border-white">
+                            <p class="font-mono text-slate-500 uppercase text-xs mb-4">MANUAL DEPLOY</p>
+                            <h3 class="font-ranchers text-6xl md:text-[80px] text-slate-600 uppercase mb-6">HUMAN ERROR</h3>
+                            <p class="font-mono text-slate-600 text-lg uppercase">ERRORS OCCUR DURING MANUAL SYNC. DOWNTIME IS FREQUENT AND PREDICTABLE.</p>
+                        </div>
+                        <div class="bg-[#CCFF00] p-12 flex flex-col justify-center text-black">
+                            <p class="font-mono text-black uppercase text-xs mb-4">AUTONOMOUS OPS</p>
+                            <h3 class="font-ranchers text-6xl md:text-[80px] text-black uppercase mb-6">AUTO-FIX</h3>
+                            <p class="font-mono text-black text-lg uppercase">SELF-HEALING SYSTEMS DETECT FAILURES BEFORE THEY HAPPEN. SHIP WITH CONFIDENCE.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROCESS BLUEPRINT -->
+            <section class="py-24 px-8 bg-[#121212]">
+                <div class="max-w-6xl mx-auto mb-16">
+                    <p class="font-mono text-[#CCFF00] uppercase mb-4">THE ARCHITECTURE</p>
+                    <h2 class="font-ranchers text-7xl md:text-9xl text-white uppercase">SYSTEM FLOW</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+                    <!-- Card 1 -->
+                    <div class="relative bg-white p-10 border-8 border-black neo-shadow-white overflow-hidden group">
+                        <span class="absolute -bottom-4 -right-2 font-ranchers text-[180px] opacity-[0.05] pointer-events-none text-black">1</span>
+                        <div class="absolute -top-4 -left-2 bg-[#CCFF00] border-4 border-black px-4 py-1 rotate-3 font-mono text-black font-bold z-10">
+                            STEP 01
+                        </div>
+                        <h4 class="font-ranchers text-5xl text-black uppercase mb-4">INGEST</h4>
+                        <p class="text-black font-semibold mb-6 uppercase leading-snug">Push raw telemetry through our high-bandwidth industrial gateways.</p>
+                        <div class="font-mono text-black text-xs space-y-2">
+                            <p>+ PACKET INSPECTION</p>
+                            <p>+ COMPRESSION ENGINE</p>
+                            <p>+ ENCRYPTION LAYER</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="relative bg-white p-10 border-8 border-black neo-shadow-white overflow-hidden group">
+                        <span class="absolute -bottom-4 -right-2 font-ranchers text-[180px] opacity-[0.05] pointer-events-none text-black">2</span>
+                        <div class="absolute -top-4 -left-2 bg-[#CCFF00] border-4 border-black px-4 py-1 -rotate-2 font-mono text-black font-bold z-10">
+                            STEP 02
+                        </div>
+                        <h4 class="font-ranchers text-5xl text-black uppercase mb-4">PROCESS</h4>
+                        <p class="text-black font-semibold mb-6 uppercase leading-snug">Parallel processing clusters transform data into actionable insights instantly.</p>
+                        <div class="font-mono text-black text-xs space-y-2">
+                            <p>+ GPU ACCELERATION</p>
+                            <p>+ LOGIC MAPPING</p>
+                            <p>+ VECTOR INDEXING</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="relative bg-white p-10 border-8 border-black neo-shadow-white overflow-hidden group">
+                        <span class="absolute -bottom-4 -right-2 font-ranchers text-[180px] opacity-[0.05] pointer-events-none text-black">3</span>
+                        <div class="absolute -top-4 -left-2 bg-[#CCFF00] border-4 border-black px-4 py-1 rotate-1 font-mono text-black font-bold z-10">
+                            STEP 03
+                        </div>
+                        <h4 class="font-ranchers text-5xl text-black uppercase mb-4">DEPLOY</h4>
+                        <p class="text-black font-semibold mb-6 uppercase leading-snug">Ship formatted assets to any edge node across the global network.</p>
+                        <div class="font-mono text-black text-xs space-y-2">
+                            <p>+ EDGE SYNC</p>
+                            <p>+ CONTENT DELIVERY</p>
+                            <p>+ CACHE WARMING</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COUNTDOWN & FINAL CTA -->
+            <section class="py-32 px-8 bg-[#CCFF00] border-y-8 border-black">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="font-ranchers text-8xl md:text-[120px] text-black uppercase mb-12">PHASE 04 ENDS IN:</h2>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 mb-16">
+                        <div class="bg-white border-4 border-black p-6 neo-shadow-black w-32">
+                            <p class="text-5xl font-bold text-black">08</p>
+                            <p class="font-mono text-xs font-bold text-black uppercase mt-2">DAYS</p>
+                        </div>
+                        <div class="bg-white border-4 border-black p-6 neo-shadow-black w-32">
+                            <p class="text-5xl font-bold text-black">14</p>
+                            <p class="font-mono text-xs font-bold text-black uppercase mt-2">HOURS</p>
+                        </div>
+                        <div class="bg-white border-4 border-black p-6 neo-shadow-black w-32">
+                            <p class="text-5xl font-bold text-black">52</p>
+                            <p class="font-mono text-xs font-bold text-black uppercase mt-2">MINS</p>
+                        </div>
+                    </div>
+
+                    <a id="footer-cta-btn" href="#" class="inline-block bg-black text-white font-ranchers text-5xl px-16 py-8 border-4 border-black neo-shadow-white transition-brutalist brutalist-btn-hover uppercase">
+                        SECURE YOUR SPOT
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- STRUCTURAL SIDEBAR (FIXED RIGHT) -->
+        <aside class="hidden md:flex fixed top-0 right-0 h-full w-[200px] border-l-4 border-black z-40">
+            <div class="flex w-full">
+                <!-- Strip 1 -->
+                <div class="flex-1 bg-white border-r-4 border-black flex items-center justify-center">
+                    <span class="writing-vertical font-mono text-black text-2xl font-bold tracking-widest uppercase">DESIGN</span>
+                </div>
+                <!-- Strip 2 -->
+                <div class="flex-1 bg-white border-r-4 border-black flex items-center justify-center">
+                    <span class="writing-vertical font-mono text-black text-2xl font-bold tracking-widest uppercase">BUILD</span>
+                </div>
+                <!-- Strip 3 -->
+                <div class="flex-1 bg-white flex items-center justify-center">
+                    <span class="writing-vertical font-mono text-black text-2xl font-bold tracking-widest uppercase">SHIP</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- FOOTER BAR -->
+        <footer class="bg-black text-white py-8 px-8 md:pr-[248px] flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-mono text-xs text-slate-500 uppercase">
+                © 2024 DISRUPTOR INDUSTRIAL SYSTEMS // ALL RIGHTS RESERVED
+            </div>
+            <div class="flex gap-8 font-mono text-xs uppercase font-bold">
+                <a id="footer-link-terms" href="#" class="hover:text-[#CCFF00]">TERMS</a>
+                <a id="footer-link-privacy" href="#" class="hover:text-[#CCFF00]">PRIVACY</a>
+                <a id="footer-link-docs" href="#" class="hover:text-[#CCFF00]">DOCS</a>
+            </div>
+        </footer>
+    </div>
+
+</body></html>
